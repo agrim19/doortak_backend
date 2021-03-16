@@ -6,7 +6,7 @@ Clone the repository from GitHub
 Move to directory in the terminal
 #### Step 3 
 npm install
-### Step 4
+#### Step 4
 add dotenv file to directory manually
 #### Step 5
 npm start
