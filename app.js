@@ -14,6 +14,7 @@ app.use(session({
 app.use("/", require("./routes/index"));
 app.use("/", require("./routes/auth"));
 app.use("/user", require("./routes/user"));
+app.use("/order", require("./routes/order"));
 
 app.listen("8080", () => {
     console.log("Listening on port 8080");
