@@ -6,5 +6,5 @@ const con = mysql.createConnection({
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD
 });
-con.query('use sql6399261;');
+con.query('use bhqgpt3eewmhyyhfo3sh;');
 module.exports = con;
