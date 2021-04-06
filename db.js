@@ -2,7 +2,7 @@ const mysql = require('mysql');
 require('dotenv').config()
 
 const con = mysql.createConnection({
-    host: "sql6.freemysqlhosting.net",
+    host: "bhqgpt3eewmhyyhfo3sh-mysql.services.clever-cloud.com",
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD
 });
