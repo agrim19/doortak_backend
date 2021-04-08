@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { route } = require('.');
 const con = require('../db');
 
 router.get("/", (req, res, next) => {
