@@ -7,7 +7,7 @@ const FileStore = require('session-file-store')(session);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session({
-    secret: "addsecretenvvariablehere",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }));
