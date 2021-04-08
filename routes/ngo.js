@@ -15,4 +15,10 @@ router.get("/", (req, res, next) => {
     });
 });
 
+router.get("/:id", (req, res, next) => {
+    con.query("select * from NGO where Registeration_Number='" + req.params.id + "';", (err, result, fields) => {
+        return res.json(result);
+    });
+});
+
 module.exports = router;

@@ -3,6 +3,7 @@ const app = express();
 const uuid = require('uuid').v4;
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+require('dotenv').config()
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
