@@ -3,9 +3,7 @@ const { route } = require('.');
 const con = require('../db');
 
 router.get("/", (req, res, next) => {
-    ret = {
-        noDishes: 0
-    }
+    ret = {}
     con.query("select SUM(Quantity) as sumDishes from Donation_Items", (err, result, fields) => {
         ret.noDishes = result[0].sumDishes
         con.query("select count(*) as noNgo from NGO", (err, result, fields) => {
