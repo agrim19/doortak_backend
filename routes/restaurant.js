@@ -52,4 +52,9 @@ router.get("/top", (req, res, next) => {
     }
 });
 
+router.post("/:id/add_dish", (req, res, next) => {
+    con.query("INSERT INTO `Dishes` (Dishes_ID, Dishes, Price, Restaurant_ID) VALUES ( '" + req.body.Dishes_ID + "', '" + req.body.Dishes + "', '" + req.body.Price + "', '" + req.params.id + "');", (err, result, fields) => {
+        return res.json(result);
+    });
+});
 module.exports = router;
