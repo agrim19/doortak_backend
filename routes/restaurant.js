@@ -57,4 +57,10 @@ router.post("/:id/add_dish", (req, res, next) => {
         return res.json(result);
     });
 });
+
+router.post("/:id/edit_dish", (req, res, next) => {
+    con.query("UPDATE `Dishes` SET  Dishes='" + req.body.Dishes + "', Price='" + req.body.Price + "' WHERE   Dishes_ID='" + req.body.Dishes_ID + "' AND Restaurant_ID=   '" + req.params.id + "';", (err, result, fields) => {
+        return res.json(result);
+    });
+});
 module.exports = router;
