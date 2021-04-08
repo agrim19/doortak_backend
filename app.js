@@ -16,6 +16,7 @@ app.use("/", require("./routes/auth"));
 app.use("/user", require("./routes/user"));
 app.use("/order", require("./routes/order"));
 app.use("/restaurant", require("./routes/restaurant"));
+app.use("/ngo", require("./routes/ngo"));
 
 app.listen("8080", () => {
     console.log("Listening on port 8080");

@@ -60,6 +60,6 @@ router.post("/:id/update", (req, res, next) => {
         console.log(e);
         return res.send("ERROR");
     }
-})
+});
 
 module.exports = router;
