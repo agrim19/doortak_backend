@@ -36,4 +36,15 @@ router.get("/:id/prevDonations", (req, res, next) => {
     });
 });
 
+router.get("/:id/stats", (req, res, next) => {
+    ret = {}
+    con.query("select SUM(Quantity) as sumDishes from Donation_Items where Donation_Number IN (select Donation_Number from Donations where Registeration_Number = '" + req.params.id + "');", (err, result, fields) => {
+        ret.noDishes = result[0].sumDishes
+        con.query("select count(DISTINCT Restaurant_ID) as noRest from Donations where Registeration_Number = '" + req.params.id + "';", (err, result, fields) => {
+            ret.noRest = result[0].noRest;
+            return res.json(ret);
+        });
+    });
+});
+
 module.exports = router;
