@@ -21,4 +21,12 @@ router.get("/:id", (req, res, next) => {
     });
 });
 
+router.post("/:id/edit", (req, res, next) => {
+    const { Name, Address, Request_Status } = req.body;
+    con.query("update NGO set Name ='" + Name + "',Address = '" + Address + "',Request_Status = '" + Request_Status + "' where Registeration_Number = '" + req.params.id + "';", (err, result, fields) => {
+        if (err) return res.json(err);
+        return res.json(result);
+    })
+});
+
 module.exports = router;
