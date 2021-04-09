@@ -29,4 +29,11 @@ router.post("/:id/edit", (req, res, next) => {
     })
 });
 
+router.get("/:id/prevDonations", (req, res, next) => {
+    con.query("select * from Donations where Registeration_Number = '" + req.params.id + "';", (err, result, fields) => {
+        if (err) return res.json(err);
+        return res.json(result);
+    });
+});
+
 module.exports = router;
