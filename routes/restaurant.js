@@ -63,4 +63,29 @@ router.post("/:id/edit_dish", (req, res, next) => {
         return res.json(result);
     });
 });
+
+router.get('/:id/pendingOrders', (req, res, next) => {
+    try {
+        con.query("SELECT * from `Orders` where STATUS ='NOT DONE' and Restaurant_ID='" + req.params.id + "';", (err, result, fields) => {
+            return res.json(result);
+        })
+    }
+    catch (e) {
+        console.log(e);
+        return res.send("ERROR");
+    }
+});
+
+router.get('/:id/completedOrders', (req, res, next) => {
+    try {
+        con.query("SELECT * from `Orders` where STATUS ='DONE' and Restaurant_ID='" + req.params.id + "';", (err, result, fields) => {
+            return res.json(result);
+        })
+    }
+    catch (e) {
+        console.log(e);
+        return res.send("ERROR");
+    }
+});
+
 module.exports = router;
