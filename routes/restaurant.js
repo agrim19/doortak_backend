@@ -28,6 +28,15 @@ router.get("/:id/details", (req, res, next) => {
     }
 });
 
+router.post("/:id/details", (req, res, next) => {
+    const { Name, Address, Phone_number, Rating } = req.body;
+    con.query("UPDATE `Restaurant` SET `Name` = '" + Name + "', `Address` = '" + Address + "', `Phone_Number` = '" + Phone_number + "', `Rating` = '" + Rating + "' WHERE (`Restaurant_ID` = '" + req.params.id + "');", (err, result, fields) => {
+        if (err) return next(err);
+        // TODO:check result.affectedRows. If 0, number does not exist
+        return res.json(result);
+    });
+});
+
 router.get("/:id/sales", (req, res, next) => {
     try {
         con.query("select * from Restaurant, Restaurant_Sales WHERE Restaurant.Restaurant_ID=Restaurant_Sales.Restaurant_ID AND Restaurant.Restaurant_ID='" + req.params.id + "';", (err, result, fields) => {
