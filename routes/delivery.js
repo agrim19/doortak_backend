@@ -2,6 +2,17 @@ const router = require('express').Router();
 const con = require('../db');
 
 //  Delivered Orders
+router.get('/:id/completedOrders', (req, res, next) => {
+    try {
+        con.query("SELECT * from `Orders` where STATUS ='DONE' and Delivery_Person_ID='" + req.params.id + "';", (err, result, fields) => {
+            return res.json(result);
+        })
+    }
+    catch (e) {
+        console.log(e);
+        return res.send("ERROR");
+    }
+});
 //  Previous Month Earnings
 
 router.get("/:id/earnings", (req, res, next) => {
@@ -16,6 +27,17 @@ router.get("/:id/earnings", (req, res, next) => {
     }
 });
 // Current Order Screen(optional)
+router.get('/:id/pendingOrders', (req, res, next) => {
+    try {
+        con.query("SELECT * from `Orders` where STATUS ='NOT DONE' and Delivery_Person_ID='" + req.params.id + "';", (err, result, fields) => {
+            return res.json(result);
+        })
+    }
+    catch (e) {
+        console.log(e);
+        return res.send("ERROR");
+    }
+});
 // See/Edit Profile
 router.post("/:id/edit", (req, res, next) => {
     const { Name, Phone_Number, Vehicle_ID } = req.body;
