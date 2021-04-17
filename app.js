@@ -1,16 +1,18 @@
 const express = require('express');
 const app = express();
-const uuid = require('uuid').v4;
-const session = require('express-session');
-const FileStore = require('session-file-store')(session);
+const session = require('cookie-session');
 require('dotenv').config()
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session({
+    cookie: {
+        secure: true,
+        maxAge: 60000
+    },
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
 }));
 app.use("/", require("./routes/index"));
 app.use("/", require("./routes/auth"));
@@ -23,6 +25,6 @@ app.use("/donation", require("./routes/donations"));
 app.use("/admin", require("./routes/admin"));
 app.use("/delivery", require("./routes/delivery"));
 
-app.listen("8080", () => {
+app.listen(process.env.PORT || 8080, () => {
     console.log("Listening on port 8080");
 })
